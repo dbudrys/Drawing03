@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Drawing03</string>
+    <string name="title_activity_draw">DrawActivity</string>
 </resources>
