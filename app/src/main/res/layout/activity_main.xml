@@ -18,4 +18,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="97dp"
         android:id="@+id/play_button" />
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="21dp"
+        android:id="@+id/color_seeker" />
 </RelativeLayout>
