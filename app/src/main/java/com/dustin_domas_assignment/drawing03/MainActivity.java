@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SeekBar colorSeeker;
+        ColorSeeker colorSeeker;
         //assignment 03
         //mic check
 
@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });// end of onclick*/
+
+
+        //colorSeeker = new (ColorSeeker) findViewById(R.id.colorSeek);
 
 
         }
