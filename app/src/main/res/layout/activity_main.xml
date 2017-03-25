@@ -10,6 +10,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.dustin_domas_assignment.drawing03.MainActivity">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frameLayout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
     <Button
         android:text="Lets Draw"
         android:layout_width="wrap_content"
@@ -19,14 +27,14 @@
         android:layout_marginTop="97dp"
         android:id="@+id/play_button" />
 
-    <SeekBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="21dp"
-        android:id="@+id/color_seeker" />
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_action"
+            android:background="@drawable/fab_circle"
+            android:id="@+id/fabButton"
+            android:layout_margin="15dp"
+            android:layout_gravity="bottom|right"/>
+    </FrameLayout>
+
 </RelativeLayout>

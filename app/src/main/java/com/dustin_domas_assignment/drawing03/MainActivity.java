@@ -9,15 +9,21 @@ import android.graphics.Paint;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 
 public class MainActivity extends AppCompatActivity {
 
     DrawActivity draw;
     Paint mPaint;
-
+    Button play;
+    Toolbar toolbar;
+    ImageButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,28 +31,50 @@ public class MainActivity extends AppCompatActivity {
         ColorSeeker colorSeeker;
         //assignment 03
         //mic check
-
+        //toolbar = (Toolbar) findViewById(R.id.toolbar);
+       // setSupportActionBar(toolbar);
+        fab = (ImageButton) findViewById(R.id.fabButton);
         draw = new DrawActivity(this);
         draw.setDrawingCacheEnabled(true);
-        draw.setBackgroundColor(Color.RED);
-        setContentView(draw);
+        //draw.setBackgroundColor(Color.RED);
 
-        /*Button play_b = (Button) findViewById(R.id.play_button);
-        play_b.setOnClickListener(new View.OnClickListener() {
+        play = (Button) findViewById(R.id.play_button);
+        play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),
-                        DrawActivity.class); //Explicit intent
 
-                startActivity(intent);
+                setContentView(draw);
             }
-        });// end of onclick*/
+        });
+
+
+
+
+
 
 
         //colorSeeker = new (ColorSeeker) findViewById(R.id.colorSeek);
 
 
         }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        super.onCreateOptionsMenu(menu);
+
+
+        return true;
+    }
+
+    public boolean onPrepareOptionsMenu(Menu menu){
+        super.onPrepareOptionsMenu(menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+
+
+        return true;
+    }
 
 }
 
