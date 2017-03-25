@@ -13,4 +13,14 @@
     tools:context="com.dustin_domas_assignment.drawing03.DrawActivity"
     tools:showIn="@layout/activity_draw">
 
+
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="45dp"
+        android:id="@+id/textView2" />
+
 </RelativeLayout>

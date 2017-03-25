@@ -19,6 +19,7 @@ import android.graphics.Paint;
 import org.w3c.dom.Attr;
 import android.graphics.Path;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 public class DrawActivity extends View {
 
@@ -30,6 +31,7 @@ public class DrawActivity extends View {
     private int hgt;
     private int wdt;
     private float tX,xStep, tY, yStep;
+
 
 
 
@@ -47,6 +49,8 @@ public class DrawActivity extends View {
         super(context, attr, defStyleAttr);
         setUp(attr);
     }
+
+
 @Override
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
@@ -68,6 +72,8 @@ public class DrawActivity extends View {
         drawPaint.setStrokeCap(Paint.Cap.ROUND);
         drawPaint.setAntiAlias(true);
 
+       // TextView t = (TextView) findViewById(R.id.textView2);
+        //t.setText("HEEEEEEEEEEEEEEEEEEE");
 
 
     }
