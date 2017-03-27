@@ -1,16 +1,28 @@
 package com.dustin_domas_assignment.drawing03;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.Notification;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,84 +30,107 @@ import android.widget.TextView;
  * Created by dustinlobato on 3/23/17.
  */
 
-public class ColorPixer extends Dialog{
+public class ColorPixer extends Dialog {
 
-    float cordinate_x, cordinate_y;
-    double bitsW, bitsH;
-    private onColorpickListener listener;
-    private int colorPix;
+    private float  cordinate_x;
+    private float cordinate_y;
+
+    private int pixel;
+    private int color;
+
+    String title = "ColorPixer";
     ImageView colorPalette;
-    Bitmap bitsCanvas;
+    Button colorButton;
+
     TextView colorSwatch;
-    Canvas imageCanvas;
 
-
-
-    public interface onColorpickListener{
-        void colorChanged();
-
-    }
-
-    public ColorPixer(Context context, int color, onColorpickListener listener) {
+    public ColorPixer(Context context) {
         super(context);
-        this.colorPix = color;
-        this.listener = listener;
-
-        //setUp();
     }
+
+
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.color_pixer);
+        colorSwatch = (TextView) findViewById(R.id.colorSwatch);
+        colorPalette = (ImageView) findViewById(R.id.colorWheel);
+        colorPalette.setImageResource(R.drawable.colorwheel);
+        //colorPalette.setDrawingCacheEnabled(true);
+       // colorPalette.buildDrawingCache(true);
 
+        colorButton = (Button) findViewById(R.id.btn_select);
+        colorButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-    }
-
-
-    public boolean onTouchEvent(MotionEvent motion ){
-
-        cordinate_x = motion.getX();
-        cordinate_y = motion.getY();
-
-
-
-        return true;
-    }
-
-    protected void onDraw(Canvas canvas){
-
-    }
-
-    public void  changeColor(int color){
-
-         colorPalette = (ImageView) findViewById(R.id.imageView);
-       // colorPalette.setImageResource(R.drawable.colorwheel);
-         bitsCanvas = ((BitmapDrawable)colorPalette.getDrawable()).getBitmap();
-        //BitmapDrawable bitsImage = (BitmapDrawable)
-
-    }
+            }
+        });
 
 
 
-
-    private class ColorView extends View {
-
-        private onColorpickListener listener;
-        private Paint paint;
-
-
-
-        public ColorView(Context context, int paint, onColorpickListener l) {
-            super(context);
-
-
-
-        }
+        colorPalette.setOnTouchListener(new View.OnTouchListener() {
         @Override
-        protected void onDraw(Canvas canvas){
+        public boolean onTouch(View v, MotionEvent event) {
 
+                cordinate_x = event.getX();
+                cordinate_y = event.getY();
+
+            float [] xy = new float[] {cordinate_x,cordinate_y};
+            Matrix invertMatrix = new Matrix();
+            ((ImageView)v).getImageMatrix().invert(invertMatrix);
+
+            invertMatrix.mapPoints(xy);
+            int x = Integer.valueOf((int)xy[0]);
+            int y = Integer.valueOf((int)xy[1]);
+
+            Drawable imgDrawable = ((ImageView)v).getDrawable();
+            Bitmap bitmap = ((BitmapDrawable)imgDrawable).getBitmap();
+            int bitW = bitmap.getWidth()-1;
+            int bitH = bitmap.getHeight()-1;
+            if(x < 0){
+                x = 0;
+            }else if(x > bitW ){
+                x = bitW ;
+            }
+
+            if(y < 0){
+                y = 0;
+            }else if(y > bitH ){
+                y = bitH ;
+            }
+            pixel = bitmap.getPixel(x,y);
+
+            //pixel = bitsCanvas.getPixel(cordinate_x,cordinate_y);
+
+                int r = Color.red(pixel);
+                int g = Color.green(pixel);
+                int b = Color.blue(pixel);
+
+
+                color = Color.rgb(r,g,b);
+                colorSwatch.setBackgroundColor(color);
+
+                
+
+
+
+
+
+            return true;
         }
+    });
     }
 
 
-}
+
+
+
+
+    }
+
+
+

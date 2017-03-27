@@ -18,21 +18,21 @@ import android.view.View;
 import android.graphics.Paint;
 import org.w3c.dom.Attr;
 import android.graphics.Path;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class DrawActivity extends View {
 
-    private Context cont;
+
     private Paint drawPaint, canvasDrawable;
     private Path fingerPath;
     private Canvas canvas;
     private Bitmap bitsM;
     private int hgt;
     private int wdt;
+    private int color;
     private float tX,xStep, tY, yStep;
-
-
 
 
     public DrawActivity(Context context){
@@ -57,23 +57,26 @@ public class DrawActivity extends View {
 
 
     drawPaint.setStyle(Paint.Style.STROKE);
+
+
     canvas.drawBitmap(bitsM, 0, 0, canvasDrawable);
     canvas.drawPath(fingerPath, drawPaint);
 
-    drawPaint.setStyle(Paint.Style.STROKE);
+
     }
 
     private void setUp(AttributeSet attr){
         fingerPath = new Path();
-        drawPaint = new Paint(Paint.DITHER_FLAG);
+
+
         canvasDrawable = new Paint(Paint.DITHER_FLAG);
 
+        drawPaint = new Paint(Paint.DITHER_FLAG);
         drawPaint.setStrokeWidth(15);
         drawPaint.setStrokeCap(Paint.Cap.ROUND);
         drawPaint.setAntiAlias(true);
 
-       // TextView t = (TextView) findViewById(R.id.textView2);
-        //t.setText("HEEEEEEEEEEEEEEEEEEE");
+
 
 
     }
@@ -137,7 +140,9 @@ public class DrawActivity extends View {
         return true;
     }
 
+    public void setColor(int c){
 
+    }
 
 
 }
