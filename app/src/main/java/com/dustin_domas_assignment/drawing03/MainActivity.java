@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
     Paint mPaint;
     Button play;
     Toolbar toolbar;
-    ImageButton fab;
+    private FloatingActionButton fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +34,19 @@ public class MainActivity extends AppCompatActivity {
         //mic check
         //toolbar = (Toolbar) findViewById(R.id.toolbar);
        // setSupportActionBar(toolbar);
-        fab = (ImageButton) findViewById(R.id.fabButton);
+
         draw = new DrawActivity(this);
         draw.setDrawingCacheEnabled(true);
         //draw.setBackgroundColor(Color.RED);
 
+        fab = (FloatingActionButton) findViewById(R.id.fabButton);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ColorPixer colorDialog = new ColorPixer(MainActivity.this);
+                colorDialog.show();
+            }
+        });
         play = (Button) findViewById(R.id.play_button);
         play.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
                 setContentView(draw);
             }
+
+
         });
 
 
