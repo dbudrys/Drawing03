@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -31,43 +32,38 @@ public class DrawActivity extends View {
     private Bitmap bitsM;
     private int hgt;
     private int wdt;
-    private int color;
+    private int drawColor;
     private float tX,xStep, tY, yStep;
 
 
     public DrawActivity(Context context){
      super(context);
-        setUp(null);
- }
-
-    public DrawActivity(Context context, AttributeSet attr){
-        super(context, attr,0);
-        setUp(attr);
+        setUp();
     }
 
-    public DrawActivity(Context context, AttributeSet attr, int defStyleAttr){
-        super(context, attr, defStyleAttr);
-        setUp(attr);
+    public DrawActivity(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        setUp();
     }
 
+    public DrawActivity(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
 
-@Override
+        setUp();
+    }
+
+    @Override
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
 
+        canvas.drawBitmap(bitsM, 0, 0, canvasDrawable);
+        canvas.drawPath(fingerPath, drawPaint);
 
-    drawPaint.setStyle(Paint.Style.STROKE);
-
-
-    canvas.drawBitmap(bitsM, 0, 0, canvasDrawable);
-    canvas.drawPath(fingerPath, drawPaint);
-
-
+        drawPaint.setStyle(Paint.Style.STROKE);
     }
 
-    private void setUp(AttributeSet attr){
+    private void setUp(){
         fingerPath = new Path();
-
 
         canvasDrawable = new Paint(Paint.DITHER_FLAG);
 
@@ -75,9 +71,6 @@ public class DrawActivity extends View {
         drawPaint.setStrokeWidth(15);
         drawPaint.setStrokeCap(Paint.Cap.ROUND);
         drawPaint.setAntiAlias(true);
-
-
-
 
     }
 
@@ -101,12 +94,12 @@ public class DrawActivity extends View {
 
     private void touch_up() {
         fingerPath.lineTo(tX, tY);
-        // commit the path to our offscreen
+
         canvas.drawPath(fingerPath, drawPaint);
-        // kill this so we don't double draw
+
         fingerPath.reset();
         drawPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
-        //mPaint.setMaskFilter(null);
+
     }
 
     @Override
@@ -140,8 +133,10 @@ public class DrawActivity extends View {
         return true;
     }
 
-    public void setColor(int c){
+   public void setColor(int c){
 
+        invalidate();
+        this.drawColor = c;
     }
 
 

@@ -30,15 +30,15 @@ import android.widget.TextView;
  * Created by dustinlobato on 3/23/17.
  */
 
-public class ColorPixer extends Dialog {
+public class ColorPixer extends Dialog implements View.OnClickListener {
 
     private float  cordinate_x;
     private float cordinate_y;
 
     private int pixel;
     private int color;
+   DrawActivity drawColor;
 
-    String title = "ColorPixer";
     ImageView colorPalette;
     Button colorButton;
 
@@ -49,8 +49,18 @@ public class ColorPixer extends Dialog {
         super(context);
     }
 
+    public ColorPixer(Context context, DrawActivity d) {
+        super(context);
+        this.drawColor = d;
+    }
+    /*
+    public int getColor() {
+        return color;
+    }
 
-
+    public void setColor(int color) {
+        this.color = color;
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,18 +72,19 @@ public class ColorPixer extends Dialog {
         colorPalette.setImageResource(R.drawable.colorwheel);
 
         btnSelect = (TextView)findViewById(R.id.btn_select);
-        //colorPalette.setDrawingCacheEnabled(true);
-       // colorPalette.buildDrawingCache(true);
-
+        btnSelect.setOnClickListener(this);
         colorButton = (Button) findViewById(R.id.btn_select);
+
+
+        /*
         colorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+
             }
         });
-
-
+*/
 
         colorPalette.setOnTouchListener(new View.OnTouchListener() {
         @Override
@@ -83,10 +94,10 @@ public class ColorPixer extends Dialog {
                 cordinate_y = event.getY();
 
             float [] xy = new float[] {cordinate_x,cordinate_y};
-            Matrix invertMatrix = new Matrix();
-            ((ImageView)v).getImageMatrix().invert(invertMatrix);
+            Matrix matrix = new Matrix();
+            ((ImageView)v).getImageMatrix().invert(matrix);
 
-            invertMatrix.mapPoints(xy);
+            matrix.mapPoints(xy);
             int x = Integer.valueOf((int)xy[0]);
             int y = Integer.valueOf((int)xy[1]);
 
@@ -119,23 +130,21 @@ public class ColorPixer extends Dialog {
 
                 btnSelect.setBackgroundColor(color);
 
-                
-
-
-
-
-
             return true;
         }
     });
     }
 
+    public void onClick(View view) {
 
-
-
-
-
+        if(view.getId() == R.id.btn_select){
+            drawColor.setColor(color);
+        }
     }
+
+
+
+}
 
 
 
