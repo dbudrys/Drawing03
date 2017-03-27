@@ -43,6 +43,7 @@ public class ColorPixer extends Dialog {
     Button colorButton;
 
     TextView colorSwatch;
+    TextView btnSelect;
 
     public ColorPixer(Context context) {
         super(context);
@@ -59,6 +60,8 @@ public class ColorPixer extends Dialog {
         colorSwatch = (TextView) findViewById(R.id.colorSwatch);
         colorPalette = (ImageView) findViewById(R.id.colorWheel);
         colorPalette.setImageResource(R.drawable.colorwheel);
+
+        btnSelect = (TextView)findViewById(R.id.btn_select);
         //colorPalette.setDrawingCacheEnabled(true);
        // colorPalette.buildDrawingCache(true);
 
@@ -113,6 +116,8 @@ public class ColorPixer extends Dialog {
 
                 color = Color.rgb(r,g,b);
                 colorSwatch.setBackgroundColor(color);
+
+                btnSelect.setBackgroundColor(color);
 
                 
 
