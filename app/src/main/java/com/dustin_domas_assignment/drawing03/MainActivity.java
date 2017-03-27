@@ -17,38 +17,47 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  implements View.OnClickListener{
 
     DrawActivity draw;
     Paint mPaint;
     Button play;
-    Toolbar toolbar;
-    private FloatingActionButton fab;
-
+   int nColor;
+    FloatingActionButton paintColor;
+    FloatingActionButton brushSize;
+    FloatingActionButton erase;
+    FloatingActionButton newButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ColorSeeker colorSeeker;
-        //assignment 03
-        //mic check
+
+
         //toolbar = (Toolbar) findViewById(R.id.toolbar);
        // setSupportActionBar(toolbar);
 
         draw = new DrawActivity(this);
         draw.setDrawingCacheEnabled(true);
-        //draw.setBackgroundColor(Color.RED);
 
-        fab = (FloatingActionButton) findViewById(R.id.fabButton);
-        fab.setOnClickListener(new View.OnClickListener() {
+
+        paintColor = (FloatingActionButton) findViewById(R.id.fabButton);
+
+        brushSize = (FloatingActionButton) findViewById(R.id.brushFab);
+
+        paintColor.setOnClickListener(this);
+        brushSize.setOnClickListener(this);
+        /*fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ColorPixer colorDialog = new ColorPixer(MainActivity.this);
                 colorDialog.show();
             }
-        });
-        play = (Button) findViewById(R.id.play_button);
-        play.setOnClickListener(new View.OnClickListener() {
+        });*/
+
+
+       play = (Button) findViewById(R.id.play_button);
+        play.setOnClickListener(this);
+       /*  play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -56,18 +65,31 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-        });
+        });*/
 
 
 
-
-
-
-
-        //colorSeeker = new (ColorSeeker) findViewById(R.id.colorSeek);
 
 
         }
+
+
+        public void onClick(View view){
+
+            if(view.getId()==R.id.fabButton){
+                ColorPixer colorDialog = new ColorPixer(MainActivity.this);
+
+
+                colorDialog.show();
+
+                draw.setColor(nColor);
+            }
+
+            if(view.getId() == R.id.play_button){
+                setContentView(draw);
+            }
+        }
+
 
     public boolean onCreateOptionsMenu(Menu menu){
         super.onCreateOptionsMenu(menu);
@@ -86,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
+
 
 }
 
