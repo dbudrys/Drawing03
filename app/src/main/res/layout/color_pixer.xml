@@ -6,7 +6,7 @@
     android:layout_width="wrap_content"
     android:layout_height="350dp"
     android:orientation="horizontal"
-    android:background="#3E80B4"
+    android:background="#FFA860"
     app:layout_collapseParallaxMultiplier="1.0">
 
     <RelativeLayout
@@ -21,34 +21,36 @@
             android:layout_width="100dp"
             android:background="@android:color/white"
             android:clickable="true"
-            android:text="Select Color"
+            android:text="Press HERE When Completed"
             android:textColor="#5DBCD2"
             android:textStyle="bold"
-            android:layout_height="50dp" />
-
-        <TextView
-            android:text="TextView"
-            android:layout_width="100dp"
             android:layout_height="50dp"
-            android:id="@+id/colorSwatch"
-            android:layout_weight="1"
-            android:layout_gravity="bottom"
-            android:layout_alignParentBottom="true"
-            android:background="#FFFFFF"
-            android:layout_marginEnd="47dp"
-            android:layout_marginBottom="102dp" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true" />
+
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:src="@drawable/colorwheel"
             android:id="@+id/colorWheel"
             android:layout_gravity="fill_vertical"
             android:scaleType="center"
             android:adjustViewBounds="true"
-            android:layout_alignBottom="@+id/colorSwatch"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="28dp" />
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+
+        <TextView
+            android:id="@+id/colorSwatch"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:background="#FFFFFF"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" />
 
 
     </RelativeLayout>
