@@ -27,7 +27,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * Created by dustinlobato on 3/23/17.
+ * Created by dustinlobato on 3/23/1722222.
  */
 
 public class ColorPixer extends Dialog {
@@ -118,11 +118,6 @@ public class ColorPixer extends Dialog {
                 colorSwatch.setBackgroundColor(color);
 
                 btnSelect.setBackgroundColor(color);
-
-                
-
-
-
 
 
             return true;
